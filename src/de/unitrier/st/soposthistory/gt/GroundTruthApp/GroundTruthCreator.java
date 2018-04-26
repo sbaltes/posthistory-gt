@@ -647,10 +647,24 @@ class GroundTruthCreator extends JFrame{
     void paintAllConnectionsBetweenClickedBlocksOfCurrentTwoVersions(int versionNumber){
         if(postVersionList != null) {
             clearPanelFromAllConnectionsBetweenBlocks();
+            allCreatedBlockPairsByClicks.get(versionNumber).sort(this::compare);
+            allCreatedBlockPairsByClicks.get(versionNumber+1).sort(this::compare);
+
             for (BlockPair tmpBlockPair : allCreatedBlockPairsByClicks.get(versionNumber)) {
                 paintOneConnectionBetweenTwoBlocks(tmpBlockPair.labelLeftBlock, tmpBlockPair.labelRightBlock, tmpBlockPair.clickedBlockIsInstanceOfTextBlockVersion);
             }
+
             buttonsAtTopPanel.paintCommentPanel();
+        }
+    }
+
+    private int compare(BlockPair o1, BlockPair o2) {
+        if (o1.leftBlockPosition < o2.leftBlockPosition) {
+            return -1;
+        } else if (o1.leftBlockPosition == o2.leftBlockPosition) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
