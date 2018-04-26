@@ -1,6 +1,6 @@
 package de.unitrier.st.soposthistory.gt.GroundTruthApp;
 
-public class MainGroundTruthCreator{
+public class Main {
 
 
     public static void main(String[] args){
